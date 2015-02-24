@@ -272,7 +272,7 @@ static NSString *const CancelButtonImage=@"ic_cancel@3x.png";
                 [parameters setObject:[controller currentValue] forKey:[controller field].name];
             }
         }else{
-            hasError = true;
+            hasError = YES;
         }
     }
     
@@ -288,10 +288,10 @@ static NSString *const CancelButtonImage=@"ic_cancel@3x.png";
     //As user is agree to the license setting 'terms_of_service'='true'
     [parameters setObject:@"true" forKey:@"terms_of_service"];
     
-    
     __weak id weakSelf=self;
+    [self scrollViewTapped:nil];
     [OEXAuthentication registerUserWithParameters:parameters completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        if (!error) {
+       if (!error) {
             NSDictionary *dictionary =[NSJSONSerialization  JSONObjectWithData:data options:kNilOptions error:nil];
             ELog(@"Registration response ==>> %@",dictionary);
             BOOL success=[dictionary[@"success"] boolValue];
@@ -313,7 +313,8 @@ static NSString *const CancelButtonImage=@"ic_cancel@3x.png";
                         [self showProgress:NO];
                     }
                 }];
-            }else{
+            }
+            else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     NSString *errorMessage=dictionary[@"value"];
@@ -323,8 +324,6 @@ static NSString *const CancelButtonImage=@"ic_cancel@3x.png";
                                                                                 message:errorMessage
                                                                        onViewController:self.view
                                                                              shouldHide:YES];
-                        
-                        [self.view setUserInteractionEnabled:YES];
                     }
                     
                     [self showProgress:NO];
@@ -333,7 +332,7 @@ static NSString *const CancelButtonImage=@"ic_cancel@3x.png";
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showProgress:NO]; });
-        }
+       }
     }];
 }
 
