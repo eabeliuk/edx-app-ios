@@ -90,17 +90,11 @@ static OEXInterface * _sharedInterface = nil;
 
 - (void)initialization
 {
-    self.storage = [OEXStorageFactory getInstance];
-    self.network = [[OEXNetworkInterface alloc] init];
-    self.downloadManger=[OEXDownloadManager sharedManager];
-    self.parser = [[OEXDataParser alloc] init];
-    _network.delegate = self;
-    self.commonDownloadProgress = -1;
-  }
+   }
 
 -(void)backgroundInit {
-    NSOperationQueue *queue=[[NSOperationQueue alloc]init];
-    [queue addOperationWithBlock:^{
+  //  NSOperationQueue *queue=[[NSOperationQueue alloc]init];
+    //[queue addOperationWithBlock:^{
         //User data
         NSString * URLString =  [_network URLStringForType:URL_USER_DETAILS];
         NSData * userDataTemp = [self resourceDataForURLString:URLString downloadIfNotAvailable:NO];
@@ -121,7 +115,7 @@ static OEXInterface * _sharedInterface = nil;
             [self resumePausedDownloads];
         }];
        
-    }];
+   // }];
 }
 
 #pragma mark common methods
@@ -1652,6 +1646,13 @@ static OEXInterface * _sharedInterface = nil;
 -(void)activateIntefaceForUser:(OEXUserDetails *)user{
   
     // Reset Default Settings
+    [OEXFileUtility userDirectory];
+    self.storage = [OEXStorageFactory getInstance];
+    self.network = [[OEXNetworkInterface alloc] init];
+    self.downloadManger=[OEXDownloadManager sharedManager];
+    self.parser = [[OEXDataParser alloc] init];
+    _network.delegate = self;
+    self.commonDownloadProgress = -1;
     
     _sharedInterface.shownOfflineView=NO;
     // Used for CC
@@ -1666,11 +1667,7 @@ static OEXInterface * _sharedInterface = nil;
     NSInteger recentDownloads=[[NSUserDefaults standardUserDefaults] integerForKey:key];
     //Downloads
     self.numberOfRecentDownloads = (int)recentDownloads;
-    
-    [OEXFileUtility userDirectory];
-    _storage=[OEXStorageFactory getInstance];
     _downloadManger.delegate=self;
-    _network.delegate=self;
     [_network activate];
     [[OEXDownloadManager sharedManager] activateDownloadManager];
     [self backgroundInit];
