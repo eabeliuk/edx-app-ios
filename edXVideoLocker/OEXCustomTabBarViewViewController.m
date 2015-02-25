@@ -377,6 +377,7 @@
     {
         [_dataInterface downloadWithRequestString:_dataInterface.selectedCourseOnFront.video_outline forceUpdate:NO];
         [self getCourseOutlineData];
+        self.activityIndicator.hidden = NO;
     }
     
     [self performSelector:@selector(initMoreData) withObject:nil afterDelay:0.5];
@@ -440,7 +441,7 @@
 {
     //Get the data from the parsed global array
     self.chapterPathEntries = [[NSArray alloc] initWithArray: [self.dataInterface chaptersForURLString:self.course.video_outline]];
-    
+    self.activityIndicator.hidden = YES;
     if (cellSelectedIndex == 0 && self.chapterPathEntries.count > 0)
     {
         self.table_Courses.hidden = NO;
@@ -450,8 +451,6 @@
     else
     {
         self.table_Courses.hidden = YES;
-        self.activityIndicator.hidden = YES;
-        
         if (cellSelectedIndex==0)
         {
             self.lbl_NoCourseware.hidden = NO;
