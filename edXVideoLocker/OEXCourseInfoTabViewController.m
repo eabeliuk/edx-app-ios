@@ -28,6 +28,7 @@ static const CGFloat OEXCourseInfoBlurRadius = 5;
 @property (strong, nonatomic) OEXCourse *course;
 @property (strong, nonatomic) UIActivityIndicatorView *webActivityIndicator;
 @property (strong, nonatomic) IBOutlet UILabel *announcementsNotAvailableLabel;
+@property (strong,nonatomic)IBOutlet UIView *imgBackgroundView;
 @end
 
 @implementation OEXCourseInfoTabViewController
@@ -44,6 +45,7 @@ static const CGFloat OEXCourseInfoBlurRadius = 5;
     [super viewDidLoad];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self computeBlurredCourseImage];
+        _imgBackgroundView.frame=self.img_Course.frame;
     });
     
     if (self.course) {

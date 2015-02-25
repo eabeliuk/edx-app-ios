@@ -19,6 +19,7 @@
             <connections>
                 <outlet property="announcementsLabel" destination="XLS-dU-HAK" id="wjf-9N-ZOY"/>
                 <outlet property="announcementsNotAvailableLabel" destination="Ir8-RA-Sf1" id="xqR-i6-teF"/>
+                <outlet property="imgBackgroundView" destination="UYg-jA-cxR" id="Qrk-XY-Y7v"/>
                 <outlet property="img_Course" destination="4qc-rT-Qdm" id="cYe-0N-uPR"/>
                 <outlet property="lbl_Subtitle" destination="6cz-Gz-Xc8" id="Hq5-hx-Fxn"/>
                 <outlet property="lbl_Title" destination="A0l-Cl-31q" id="uOC-Rm-059"/>
@@ -35,7 +36,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4qc-rT-Qdm">
+                        <view contentMode="scaleToFill" id="UYg-jA-cxR">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="4qc-rT-Qdm">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>

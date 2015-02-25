@@ -377,7 +377,7 @@
     {
         [_dataInterface downloadWithRequestString:_dataInterface.selectedCourseOnFront.video_outline forceUpdate:NO];
         [self getCourseOutlineData];
-        self.activityIndicator.hidden = NO;
+       
     }
     
     [self performSelector:@selector(initMoreData) withObject:nil afterDelay:0.5];
